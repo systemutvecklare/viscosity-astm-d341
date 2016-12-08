@@ -1,0 +1,14 @@
+var calculate-astm-d341 = function (v1, t1, v2, t2, t3) {
+    var t1abs, t2abs, t3abs, a, b;
+    const tConst = 273.15, vConst = 0.7;
+
+    t1abs = t1 + tConst;
+    t2abs = t2 + tConst;
+    t3abs = t3 + tConst;
+
+    b = (Math.log10(Math.log10(v2 + vConst)) - Math.log10(Math.log10(v1 + vConst))) / (Math.log10(t1abs) - Math.log10(t2abs));
+    a = Math.log10(Math.log10(v2 + vConst)) + b * Math.log10(t2abs);
+    v3 = Math.pow(10, Math.pow(10, a - b * Math.log10(t3abs))) - vConst;
+
+    return v3.toPrecision(4);
+};
